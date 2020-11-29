@@ -56,14 +56,16 @@
     <Analyzer Include="/Applications/Visual Studio.app/Contents/Resources/lib/monodevelop/AddIns/MonoDevelop.Unity/Analyzers/Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets/Scripts/Level.cs" />
-    <Compile Include="Assets/Scripts/SetChildColor.cs" />
+    <Compile Include="Assets/Scripts/PreLevelScriptable/Level.cs" />
+    <Compile Include="Assets/Scripts/PreLevelScriptable/GeneratedLevel.cs" />
     <Compile Include="Assets/Scripts/LineGenerator.cs" />
-    <Compile Include="Assets/Scripts/LevelData.cs" />
+    <Compile Include="Assets/Scripts/LevelGenerator.cs" />
+    <Compile Include="Assets/Scripts/PreLevelScriptable/LevelData.cs" />
     <Compile Include="Assets/Scripts/MenuLevelButton.cs" />
     <Compile Include="Assets/Scripts/GridGenerator.cs" />
     <Compile Include="Assets/Scripts/AudioManager.cs" />
     <Compile Include="Assets/Scripts/Vibration.cs" />
+    <Compile Include="Assets/Scripts/PreLevelScriptable/GeneratedLevelData.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

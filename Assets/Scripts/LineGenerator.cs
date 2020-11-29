@@ -23,8 +23,10 @@ public class LineGenerator : MonoBehaviour
       audioSource = GetComponent<AudioSource>();
     }
 
+    //Functino that deals with point addition to the line
     public void AddLinePoint(Vector2 newPoint, int arrayPosition, bool moving)
     {
+        //If point is new, add it to the line
         if (!storedLinePoints.Contains(newPoint))
         {
           if(!moving || (moving && (newPoint.x == storedLinePoints[storedLinePoints.Count-1].x || newPoint.y == storedLinePoints[storedLinePoints.Count-1].y)))
@@ -36,11 +38,22 @@ public class LineGenerator : MonoBehaviour
             addedPoint = true;
           }
         }
+        //If point is old and the one before the current point, remove it (remember, Count is 1-based)
+        else if(newPoint != storedLinePoints[storedLinePoints.Count-1])
+        {
+          if(newPoint == storedLinePoints[storedLinePoints.Count-2])
+          {
+            storedLinePoints.Remove(storedLinePoints[storedLinePoints.Count-1]);
+            arrayPos.Remove(arrayPos[arrayPos.Count-1]);
+            line.positionCount -= 1;
+          }
+          addedPoint = false;
+        }
         else
-            addedPoint = false;
+          addedPoint = false;
     }
 
-    //Check line status
+    //Check line status: True is line completed; False is line not completed
     public bool CheckLineStatus(Vector2 newPoint, Vector2 startPoint, Vector2 endPoint, GameObject[] nodes)
     {
       if(!lineStatus)
@@ -84,6 +97,7 @@ public class LineGenerator : MonoBehaviour
     }
 
 
+    //Remove Entire Line (To be used when someone re-initiates a line by touching on one of its extremities)
     public void RemoveAllPoints()
     {
         storedLinePoints = new List<Vector2>();

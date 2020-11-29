@@ -23,15 +23,18 @@ public class LineGenerator : MonoBehaviour
       audioSource = GetComponent<AudioSource>();
     }
 
-    public void AddLinePoint(Vector2 newPoint, int arrayPosition)
+    public void AddLinePoint(Vector2 newPoint, int arrayPosition, bool moving)
     {
         if (!storedLinePoints.Contains(newPoint))
         {
+          if(!moving || (moving && (newPoint.x == storedLinePoints[storedLinePoints.Count-1].x || newPoint.y == storedLinePoints[storedLinePoints.Count-1].y)))
+          {
             arrayPos.Add(arrayPosition);
             storedLinePoints.Add(newPoint); // add the new point to our saved list of line points
             line.positionCount = storedLinePoints.Count; // set the line’s vertex count to how many points we now have, which will be 1 more than it is currently
             line.SetPosition(storedLinePoints.Count - 1, newPoint);
             addedPoint = true;
+          }
         }
         else
             addedPoint = false;
@@ -99,7 +102,7 @@ public class LineGenerator : MonoBehaviour
       }
       lineStatus = false;
       RemoveAllPoints();
-      AddLinePoint(centerPos[hitPos], hitPos);
+      AddLinePoint(centerPos[hitPos], hitPos, false);
     }
 
    /* void RemoveLastLinePoint()

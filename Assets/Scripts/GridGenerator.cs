@@ -176,7 +176,11 @@ public class GridGenerator : MonoBehaviour
 
         else if (touch.phase.ToString() == "Moved" && generatingLine)
         {
-            line.AddLinePoint(centerPositions[hitPosition], hitPosition);
+            if(!specialPositions.Contains(hitPosition) || hitPosition == specialPositions[line.lineId*2] || hitPosition == specialPositions[line.lineId*2 +1])
+              line.AddLinePoint(centerPositions[hitPosition], hitPosition, true);
+
+            else
+              generatingLine = false;
 
             if(!lineStatus[line.lineId])
               lineStatus[line.lineId] = line.CheckLineStatus(centerPositions[hitPosition],
@@ -231,16 +235,23 @@ public class GridGenerator : MonoBehaviour
         }
     }
 
+    //BackToMenu
     public void BackToMenu()
     {
         currentLevel = -1;
         SceneManager.LoadScene("MainMenu");
     }
 
+    //Load Next Level or Retry (nextLevel bool is defined on each Button OnClick)
     public void LoadLevel(bool nextLevel)
     {
         if(nextLevel)
           currentLevel ++;
-        SceneManager.LoadScene("TestScene");
+
+        if(currentLevel == 17)
+          SceneManager.LoadScene("MainMenu");
+        else
+
+          SceneManager.LoadScene("LevelScene");
     }
 }

@@ -35,16 +35,16 @@ MonoBehaviour:
     numberOfLines: 4
   - gridSize: 6
     numberOfLines: 1
-  - gridSize: 0
-    numberOfLines: 0
-  - gridSize: 0
-    numberOfLines: 0
-  - gridSize: 0
-    numberOfLines: 0
-  - gridSize: 0
-    numberOfLines: 0
-  - gridSize: 0
-    numberOfLines: 0
+  - gridSize: 6
+    numberOfLines: 2
+  - gridSize: 6
+    numberOfLines: 3
+  - gridSize: 6
+    numberOfLines: 4
+  - gridSize: 6
+    numberOfLines: 5
+  - gridSize: 7
+    numberOfLines: 5
   - gridSize: 0
     numberOfLines: 0
   - gridSize: 0

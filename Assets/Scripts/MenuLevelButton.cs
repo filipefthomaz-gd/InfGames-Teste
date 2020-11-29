@@ -49,6 +49,6 @@ public class MenuLevelButton : MonoBehaviour
     {
         Vibration.Vibrate();
         GridGenerator.currentLevel = level;
-        SceneManager.LoadScene("TestScene");
+        SceneManager.LoadScene("LevelScene");
     }
 }

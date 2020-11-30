@@ -66,10 +66,9 @@
     <Compile Include="Assets/Scripts/Method1_RuntimeGeneration/PreLevelScriptable/LevelData.cs" />
     <Compile Include="Assets/Scripts/Method2_SavedLevels/LevelLineManager.cs" />
     <Compile Include="Assets/Scripts/MenuLevelButton.cs" />
-    <Compile Include="Assets/Scripts/Method1_RuntimeGeneration/GridGenerator.cs" />
     <Compile Include="Assets/Scripts/AudioManager.cs" />
-    <Compile Include="Assets/Scripts/Vibration.cs" />
     <Compile Include="Assets/Scripts/Method2_SavedLevels/SavedLevels/GeneratedLevelData.cs" />
+    <Compile Include="Assets/Scripts/Method1_RuntimeGeneration/LevelManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

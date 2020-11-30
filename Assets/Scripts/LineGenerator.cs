@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.Rendering;
 
 public class LineGenerator : MonoBehaviour
 {
@@ -71,23 +70,17 @@ public class LineGenerator : MonoBehaviour
     }
 
     //Check line status: True is line completed; False is line not completed
-    public bool CheckLineStatus(Vector2 newPoint, GameObject[] nodes)
+    public void CheckLineStatus(GameObject[] nodes)
     {
       if(!lineStatus)
       {
         if (addedPoint)
         {
             if (arrayPos.Contains(lineExtremities[0]) && arrayPos.Contains(lineExtremities[1]))
-                return CompletedLine(nodes);
+                CompletedLine(nodes);
 
-            else
-                return false;
         }
-        return false;
       }
-
-      else
-        return true;
     }
 
 
@@ -135,12 +128,5 @@ public class LineGenerator : MonoBehaviour
       RemoveAllPoints();
       AddLinePoint(newPoint, hitPos, false);
     }
-
-   /* void RemoveLastLinePoint()
-    {
-        storedLinePoints.RemoveAll(storedLinePoints.Count - 1); // remove the last point from the line
-        line.SetVertexCount(storedLinePoints.Count); // set the line’s vertex count to how many points we now have, which will be 1 fewer than it is currently
-    }*/
-    // Update is called once per frame
 
 }

@@ -11,7 +11,7 @@ public class LevelLoader : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-      Instantiate(savedLevel.savedLevels[GridGenerator.currentLevel - 1].level);
+      Instantiate(savedLevel.savedLevels[LevelManager.currentLevel - 1].level);
     }
 
 

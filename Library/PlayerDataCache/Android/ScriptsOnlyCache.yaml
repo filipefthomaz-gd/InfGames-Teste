@@ -2,12 +2,13 @@ ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
     - AudioManager
-    - GeneratedLevelData
     - GridGenerator
     - LevelData
-    - LevelGenerator
+    - LevelLineManager
+    - LevelLoader
     - LineGenerator
     - MenuLevelButton
+    - SavedLevelData
     Unity.2D.Animation.Editor.dll:
     - UnityEditor.U2D.Animation.BoneGizmo
     Unity.2D.Tilemap.Editor.dll:
@@ -76,35 +77,118 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11848}
     - Class: 114
-      Script: {instanceID: 11852}
+      Script: {instanceID: 11850}
     - Class: 114
-      Script: {instanceID: 11882}
+      Script: {instanceID: 11854}
     - Class: 114
-      Script: {instanceID: 12078}
+      Script: {instanceID: 11884}
     - Class: 114
-      Script: {instanceID: 12210}
+      Script: {instanceID: 12082}
     - Class: 114
-      Script: {instanceID: 12478}
+      Script: {instanceID: 12192}
     - Class: 114
-      Script: {instanceID: 13014}
+      Script: {instanceID: 12216}
     - Class: 114
-      Script: {instanceID: 13148}
+      Script: {instanceID: 12484}
     - Class: 114
-      Script: {instanceID: 13466}
+      Script: {instanceID: 13024}
     - Class: 114
-      Script: {instanceID: 13604}
+      Script: {instanceID: 13474}
     - Class: 114
-      Script: {instanceID: 13626}
+      Script: {instanceID: 13614}
     - Class: 114
-      Script: {instanceID: 13846}
+      Script: {instanceID: 13636}
     - Class: 114
-      Script: {instanceID: 14706}
+      Script: {instanceID: 14714}
     - Class: 114
-      Script: {instanceID: 15164}
+      Script: {instanceID: 15172}
     - Class: 114
-      Script: {instanceID: 15256}
+      Script: {instanceID: 15264}
     - Class: 114
-      Script: {instanceID: 15370}
+      Script: {instanceID: 15378}
+    - Class: 115
+      Script: {instanceID: 0}
+    - Class: 120
+      Script: {instanceID: 0}
+    - Class: 128
+      Script: {instanceID: 0}
+    - Class: 157
+      Script: {instanceID: 0}
+    - Class: 196
+      Script: {instanceID: 0}
+    - Class: 198
+      Script: {instanceID: 0}
+    - Class: 199
+      Script: {instanceID: 0}
+    - Class: 212
+      Script: {instanceID: 0}
+    - Class: 213
+      Script: {instanceID: 0}
+    - Class: 222
+      Script: {instanceID: 0}
+    - Class: 223
+      Script: {instanceID: 0}
+    - Class: 224
+      Script: {instanceID: 0}
+    Assets/Scenes/LevelScene2.unity:
+    - Class: 1
+      Script: {instanceID: 0}
+    - Class: 4
+      Script: {instanceID: 0}
+    - Class: 20
+      Script: {instanceID: 0}
+    - Class: 21
+      Script: {instanceID: 0}
+    - Class: 28
+      Script: {instanceID: 0}
+    - Class: 48
+      Script: {instanceID: 0}
+    - Class: 61
+      Script: {instanceID: 0}
+    - Class: 72
+      Script: {instanceID: 0}
+    - Class: 81
+      Script: {instanceID: 0}
+    - Class: 82
+      Script: {instanceID: 0}
+    - Class: 83
+      Script: {instanceID: 0}
+    - Class: 104
+      Script: {instanceID: 0}
+    - Class: 114
+      Script: {instanceID: 11848}
+    - Class: 114
+      Script: {instanceID: 11850}
+    - Class: 114
+      Script: {instanceID: 11854}
+    - Class: 114
+      Script: {instanceID: 11884}
+    - Class: 114
+      Script: {instanceID: 11902}
+    - Class: 114
+      Script: {instanceID: 12082}
+    - Class: 114
+      Script: {instanceID: 12192}
+    - Class: 114
+      Script: {instanceID: 12216}
+    - Class: 114
+      Script: {instanceID: 12484}
+    - Class: 114
+      Script: {instanceID: 12926}
+    - Class: 114
+      Script: {instanceID: 13024}
+    - Class: 114
+      Script: {instanceID: 13482}
+    - Class: 114
+      Script: {instanceID: 13614}
+    - Class: 114
+      Script: {instanceID: 14714}
+    - Class: 114
+      Script: {instanceID: 15172}
+    - Class: 114
+      Script: {instanceID: 15264}
+    - Class: 114
+      Script: {instanceID: 15378}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 120
@@ -155,39 +239,33 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11848}
     - Class: 114
-      Script: {instanceID: 11852}
+      Script: {instanceID: 11850}
     - Class: 114
-      Script: {instanceID: 11882}
+      Script: {instanceID: 11854}
     - Class: 114
-      Script: {instanceID: 12078}
+      Script: {instanceID: 11884}
     - Class: 114
-      Script: {instanceID: 12210}
+      Script: {instanceID: 12082}
     - Class: 114
-      Script: {instanceID: 12478}
+      Script: {instanceID: 12216}
     - Class: 114
-      Script: {instanceID: 13014}
+      Script: {instanceID: 12484}
     - Class: 114
-      Script: {instanceID: 13330}
+      Script: {instanceID: 13024}
     - Class: 114
-      Script: {instanceID: 13466}
+      Script: {instanceID: 13582}
     - Class: 114
-      Script: {instanceID: 13572}
+      Script: {instanceID: 13614}
     - Class: 114
-      Script: {instanceID: 13604}
+      Script: {instanceID: 13922}
     - Class: 114
-      Script: {instanceID: 13846}
+      Script: {instanceID: 14714}
     - Class: 114
-      Script: {instanceID: 13914}
+      Script: {instanceID: 15172}
     - Class: 114
-      Script: {instanceID: 14556}
+      Script: {instanceID: 15264}
     - Class: 114
-      Script: {instanceID: 14706}
-    - Class: 114
-      Script: {instanceID: 15164}
-    - Class: 114
-      Script: {instanceID: 15256}
-    - Class: 114
-      Script: {instanceID: 15370}
+      Script: {instanceID: 15378}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -213,6 +291,12 @@ ScriptsOnlyBuild:
   scriptHashData:
   - hash:
       serializedVersion: 2
+      Hash: f087c23fbfa15475a0d110af46fb0496
+    assemblyName: UnityEngine.UI.dll
+    namespaceName: UnityEngine.UI
+    className: Button
+  - hash:
+      serializedVersion: 2
       Hash: a6e561615949734e9f12f9b61661f43e
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
@@ -229,6 +313,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
     className: CanvasScaler
+  - hash:
+      serializedVersion: 2
+      Hash: bc53a74033025a2ff9fb61f10e6bb7d9
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: LevelLoader
   - hash:
       serializedVersion: 2
       Hash: 726fcf7961cbb4108aa5be5e55b8c8bf
@@ -295,6 +385,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: ActivationTrack
+  - hash:
+      serializedVersion: 2
+      Hash: 55b7bb652de71e48559f7e57e28c3110
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: LineGenerator
   - hash:
       serializedVersion: 2
       Hash: 699619b86d9359741a4f58540298c80b
@@ -459,6 +555,12 @@ ScriptsOnlyBuild:
     className: Shadow
   - hash:
       serializedVersion: 2
+      Hash: cdb6d5f1c611482a30edbbd59698bcef
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: SavedLevelData
+  - hash:
+      serializedVersion: 2
       Hash: 7e6ed836cbaa230e56d6a2bbae1b9bb5
     assemblyName: Unity.Postprocessing.Runtime.dll
     namespaceName: UnityEngine.Rendering.PostProcessing
@@ -507,19 +609,13 @@ ScriptsOnlyBuild:
     className: Selectable
   - hash:
       serializedVersion: 2
-      Hash: 55b7bb652de71e48559f7e57e28c3110
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: LineGenerator
-  - hash:
-      serializedVersion: 2
       Hash: 61b9d9b6f4b6a222dfea8b131b3d3227
     assemblyName: Unity.Postprocessing.Runtime.dll
     namespaceName: UnityEngine.Rendering.PostProcessing
     className: ChromaticAberration
   - hash:
       serializedVersion: 2
-      Hash: 9e7219549eef0815761d20f911899252
+      Hash: a749fb36a8b4b7a42a43e2321fd41b3e
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: LevelGenerator
@@ -537,6 +633,12 @@ ScriptsOnlyBuild:
     className: LevelData
   - hash:
       serializedVersion: 2
+      Hash: bd9be5e31a78683d15600905b4820ed6
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: LevelLineManager
+  - hash:
+      serializedVersion: 2
       Hash: c3d3430df9e3ea95e3e3d587961390fb
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
@@ -549,7 +651,7 @@ ScriptsOnlyBuild:
     className: SpriteSkinEntity
   - hash:
       serializedVersion: 2
-      Hash: 04cd9daa4a16b89a3de6c0879053908b
+      Hash: 539355286cfc8658286b0b7f3143b83c
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: MenuLevelButton
@@ -595,12 +697,6 @@ ScriptsOnlyBuild:
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
     className: TextContainer
-  - hash:
-      serializedVersion: 2
-      Hash: f087c23fbfa15475a0d110af46fb0496
-    assemblyName: UnityEngine.UI.dll
-    namespaceName: UnityEngine.UI
-    className: Button
   - hash:
       serializedVersion: 2
       Hash: c1d728126ff1918728036c59106d32b2
@@ -681,7 +777,7 @@ ScriptsOnlyBuild:
     className: TimelineAsset
   - hash:
       serializedVersion: 2
-      Hash: 05ec486264753596f186f3b22ffc33ad
+      Hash: 04e79272b2543c6ac73ca9bd72cbf744
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: GeneratedLevelData
@@ -839,4 +935,5 @@ ScriptsOnlyBuild:
   scenePathNames:
   - Assets/Scenes/MainMenu.unity
   - Assets/Scenes/LevelScene.unity
+  - Assets/Scenes/LevelScene2.unity
   playerPath: /Users/filipefthomaz/Desktop/AndroidTest.apk

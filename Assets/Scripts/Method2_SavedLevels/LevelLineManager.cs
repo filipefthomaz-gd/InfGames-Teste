@@ -94,7 +94,7 @@ public class LevelLineManager : MonoBehaviour
               generatingLine = false;
 
             if(!line.lineStatus)
-              line.CheckLineStatus(housePosition, allNodes);
+              line.CheckLineStatus(allNodes);
 
             if(line.lineStatus)
               generatingLine = false;
@@ -122,7 +122,7 @@ public class LevelLineManager : MonoBehaviour
       {
           generatingLine = false;
           victory = true;
-          PlayerPrefs.SetInt("Level_2 " + GridGenerator.currentLevel, 1);
+          PlayerPrefs.SetInt("Level_2 " + LevelManager.currentLevel, 1);
           finished.SetActive(true);
       }
     }
@@ -149,7 +149,7 @@ public class LevelLineManager : MonoBehaviour
     //BackToMenu
     public void BackToMenu()
     {
-        GridGenerator.currentLevel = -1;
+        LevelManager.currentLevel = -1;
         SceneManager.LoadScene("MainMenu");
     }
 
@@ -157,9 +157,9 @@ public class LevelLineManager : MonoBehaviour
     public void LoadLevel(bool nextLevel)
     {
         if(nextLevel)
-          GridGenerator.currentLevel ++;
+          LevelManager.currentLevel ++;
 
-        if(GridGenerator.currentLevel == 5)
+        if(LevelManager.currentLevel == 5)
           SceneManager.LoadScene("MainMenu");
         else
 

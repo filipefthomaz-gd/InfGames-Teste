@@ -26,7 +26,7 @@ MonoBehaviour:
     numberOfLines: 4
     extremityPositions:
     - {x: 0, y: 7}
-    - {x: 4, y: 16}
+    - {x: 11, y: 16}
     - {x: 24, y: 19}
     - {x: 3, y: 13}
   - gridSize: 6

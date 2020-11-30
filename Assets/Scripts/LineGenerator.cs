@@ -22,6 +22,7 @@ public class LineGenerator : MonoBehaviour
     void Start()
     {
       audioSource = GetComponent<AudioSource>();
+      line = GetComponent<LineRenderer>();
     }
 
     public void SetupLine(int extremity1, int extremity2, int id, Color lineColor)

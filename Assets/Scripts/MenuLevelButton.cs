@@ -8,6 +8,7 @@ public class MenuLevelButton : MonoBehaviour
 {
     public int level;
     public GameObject blockedImage;
+    public string scene;
     private Button button;
     private GameObject blocked;
     private int status = 0;
@@ -45,14 +46,14 @@ public class MenuLevelButton : MonoBehaviour
         LevelLocked();
     }
 
-    IEnumerator LoadYourAsyncScene()
+    IEnumerator LoadYourAsyncScene(string scene)
     {
        // The Application loads the Scene in the background as the current Scene runs.
        // This is particularly good for creating loading screens.
        // You could also load the Scene by using sceneBuildIndex. In this case Scene2 has
        // a sceneBuildIndex of 1 as shown in Build Settings.
 
-       AsyncOperation asyncLoad = SceneManager.LoadSceneAsync("LevelScene");
+       AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(scene);
 
        // Wait until the asynchronous scene fully loads
        while (!asyncLoad.isDone)
@@ -65,6 +66,6 @@ public class MenuLevelButton : MonoBehaviour
     {
         //Vibration.Vibrate();
         GridGenerator.currentLevel = level;
-        StartCoroutine(LoadYourAsyncScene());
+        StartCoroutine(LoadYourAsyncScene(scene));
     }
 }

@@ -56,16 +56,20 @@
     <Analyzer Include="/Applications/Visual Studio.app/Contents/Resources/lib/monodevelop/AddIns/MonoDevelop.Unity/Analyzers/Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets/Scripts/PreLevelScriptable/Level.cs" />
-    <Compile Include="Assets/Scripts/PreLevelScriptable/GeneratedLevel.cs" />
-    <Compile Include="Assets/Scripts/LineGenerator.cs" />
+    <Compile Include="Assets/Scripts/Method1_RuntimeGeneration/PreLevelScriptable/Level.cs" />
+    <Compile Include="Assets/Scripts/Method1_RuntimeGeneration/PreLevelScriptable/GeneratedLevel.cs" />
     <Compile Include="Assets/Scripts/LevelGenerator.cs" />
-    <Compile Include="Assets/Scripts/PreLevelScriptable/LevelData.cs" />
+    <Compile Include="Assets/Scripts/Method1_RuntimeGeneration/PreLevelScriptable/LevelData.cs" />
+    <Compile Include="Assets/Scripts/Method2_SavedLevels/LevelLineManager.cs" />
     <Compile Include="Assets/Scripts/MenuLevelButton.cs" />
-    <Compile Include="Assets/Scripts/GridGenerator.cs" />
+    <Compile Include="Assets/Scripts/Method1_RuntimeGeneration/GridGenerator.cs" />
     <Compile Include="Assets/Scripts/AudioManager.cs" />
     <Compile Include="Assets/Scripts/Vibration.cs" />
-    <Compile Include="Assets/Scripts/PreLevelScriptable/GeneratedLevelData.cs" />
+    <Compile Include="Assets/Scripts/Method1_RuntimeGeneration/PreLevelScriptable/GeneratedLevelData.cs" />
+    <Compile Include="Assets/Scripts/Method2_SavedLevels/SavedLevels/SavedLevel.cs" />
+    <Compile Include="Assets/Scripts/Method2_SavedLevels/SavedLevels/SavedLevelData.cs" />
+    <Compile Include="Assets/Scripts/Method2_SavedLevels/LevelLoader.cs" />
+    <Compile Include="Assets/Scripts/LineGenerator.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

@@ -138,13 +138,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 3281227627200214408}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57ae7b755f80b47ee800c61381fd7fba, type: 3}
+  m_Script: {fileID: 11500000, guid: 49c6c381164694b7d95f78a94adfa128, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   lineId: 0
   storedLinePoints: []
   arrayPos: 
   victoryPs: {fileID: 3382269099831792978, guid: 1b89c2d2c126a496283a5b85e802677e, type: 3}
+  lineExtremities: 0000000000000000
   lineStatus: 0
 --- !u!82 &-1129184380471950400
 AudioSource:

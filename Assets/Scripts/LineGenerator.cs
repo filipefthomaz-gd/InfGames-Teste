@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Rendering;
 
@@ -12,6 +13,7 @@ public class LineGenerator : MonoBehaviour
 
     private LineRenderer line;
     private AudioSource audioSource;
+    public int[] lineExtremities = new int[2];
 
     private bool addedPoint;
     public bool lineStatus = false;
@@ -19,9 +21,23 @@ public class LineGenerator : MonoBehaviour
 
     void Start()
     {
-      line = GetComponent<LineRenderer>();
       audioSource = GetComponent<AudioSource>();
     }
+
+    public void SetupLine(int extremity1, int extremity2, int id, Color lineColor)
+    {
+      //Set ID
+      lineId = id;
+
+      line = GetComponent<LineRenderer>();
+      line.SetColors(lineColor, lineColor);
+
+      //Set Extremities
+      lineExtremities[0] = extremity1;
+      lineExtremities[1] = extremity2;
+    }
+
+
 
     //Functino that deals with point addition to the line
     public void AddLinePoint(Vector2 newPoint, int arrayPosition, bool moving)
@@ -29,22 +45,22 @@ public class LineGenerator : MonoBehaviour
         //If point is new, add it to the line
         if (!storedLinePoints.Contains(newPoint))
         {
-          if(!moving || (moving && (newPoint.x == storedLinePoints[storedLinePoints.Count-1].x || newPoint.y == storedLinePoints[storedLinePoints.Count-1].y)))
+          if(!moving || (moving && (newPoint.x == storedLinePoints.Last().x || newPoint.y == storedLinePoints.Last().y)))
           {
-            arrayPos.Add(arrayPosition);
+            arrayPos.Add(arrayPosition); //Actual position
             storedLinePoints.Add(newPoint); // add the new point to our saved list of line points
             line.positionCount = storedLinePoints.Count; // set the line’s vertex count to how many points we now have, which will be 1 more than it is currently
             line.SetPosition(storedLinePoints.Count - 1, newPoint);
             addedPoint = true;
           }
         }
-        //If point is old and the one before the current point, remove it (remember, Count is 1-based)
-        else if(newPoint != storedLinePoints[storedLinePoints.Count-1])
+        //If point is old and the one before the current point, remove it
+        else if(newPoint != storedLinePoints.Last())
         {
           if(newPoint == storedLinePoints[storedLinePoints.Count-2])
           {
-            storedLinePoints.Remove(storedLinePoints[storedLinePoints.Count-1]);
-            arrayPos.Remove(arrayPos[arrayPos.Count-1]);
+            storedLinePoints.Remove(storedLinePoints.Last());
+            arrayPos.Remove(arrayPos.Last());
             line.positionCount -= 1;
           }
           addedPoint = false;
@@ -54,13 +70,13 @@ public class LineGenerator : MonoBehaviour
     }
 
     //Check line status: True is line completed; False is line not completed
-    public bool CheckLineStatus(Vector2 newPoint, Vector2 startPoint, Vector2 endPoint, GameObject[] nodes)
+    public bool CheckLineStatus(Vector2 newPoint, GameObject[] nodes)
     {
       if(!lineStatus)
       {
         if (addedPoint)
         {
-            if (storedLinePoints.Contains(startPoint) && storedLinePoints.Contains(endPoint))
+            if (arrayPos.Contains(lineExtremities[0]) && arrayPos.Contains(lineExtremities[1]))
                 return CompletedLine(nodes);
 
             else
@@ -107,16 +123,16 @@ public class LineGenerator : MonoBehaviour
 
 
     //Reset line; If line is completed or midway and one presses one of the extremity nodes;
-    public void ResetLine(Vector2[] centerPos, List<int> specialPos, int hitPos, GameObject[] nodes)
+    public void ResetLine(Vector2 newPoint, int hitPos, GameObject[] nodes)
     {
       foreach(int position in arrayPos)
       {
-        if(position != specialPos[lineId*2] && position != specialPos[lineId*2 + 1])
+        if(position != lineExtremities[0] && position != lineExtremities[1])
           nodes[position].GetComponent<SpriteRenderer>().color = Color.white;
       }
       lineStatus = false;
       RemoveAllPoints();
-      AddLinePoint(centerPos[hitPos], hitPos, false);
+      AddLinePoint(newPoint, hitPos, false);
     }
 
    /* void RemoveLastLinePoint()

@@ -1,0 +1,4 @@
+#Mon Nov 30 00:25:10 WET 2020
+base.0=/Users/filipefthomaz/Desktop/AndroidTeste/Temp/gradleOut/launcher/build/intermediates/dex/release/out/classes.dex
+path.0=classes.dex
+renamed.0=classes.dex

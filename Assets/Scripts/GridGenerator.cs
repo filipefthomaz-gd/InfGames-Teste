@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class GridGenerator : MonoBehaviour
@@ -29,7 +29,6 @@ public class GridGenerator : MonoBehaviour
     private List<int> specialPositions;
     private Vector2[] centerPositions;
     private GameObject[] allNodes;
-    private bool[] lineStatus;
     private int completedLines;
 
     private bool generatingLine = false;
@@ -39,7 +38,7 @@ public class GridGenerator : MonoBehaviour
 
     private Color[] colors = new Color[] {Color.green, Color.blue, Color.red, Color.yellow, Color.black };
 
-    private List<GameObject> lines = new List<GameObject>();
+    private List<LineGenerator> lines = new List<LineGenerator>();
 
     // Generates a gridSize x gridSize grid centered on the screen, and adds N-times two points to be connected
     void GenerateGrid()
@@ -113,17 +112,13 @@ public class GridGenerator : MonoBehaviour
     //Instantiates a number of lines GO's according to how many lines are requested;
     void CreateLineGameObjects()
     {
-      lineStatus = new bool[numberOfLines];
-
       for(int i = 0; i < numberOfLines; i++)
       {
-        lineStatus[i] = false; //Initiates status of each line to false (non-completed)
-
         //Setting color of line equal to its extremity nodes and number each line;
         GameObject lineObject = Instantiate(linePrefab);
-        lineObject.GetComponent<LineRenderer>().SetColors(colors[i], colors[i]);
-        lineObject.GetComponent<LineGenerator>().lineId = i;
-        lines.Add(lineObject); //Store each instantiated line on List 'lines';
+        LineGenerator lineGen = lineObject.GetComponent<LineGenerator>();
+        lineGen.SetupLine(specialPositions[i*2], specialPositions[i*2+1], i, colors[i]);
+        lines.Add(lineGen); //Store each instantiated line on List 'lines';
       }
     }
 
@@ -139,35 +134,33 @@ public class GridGenerator : MonoBehaviour
         CreateLineGameObjects();
     }
 
+    //UpdateLine
     void UpdateLine(string touchedHouse, Touch touch)
     {
         int hitPosition = int.Parse(touchedHouse);
+
+        //If begin a touch, check if the touch is in a Extremety (SpecialPositions) or on the tip of an unfinished line
         if (touch.phase.ToString() == "Began")
         {
-            if (specialPositions.Contains(hitPosition))//(hitPosition == startPosition || hitPosition == endPosition)
+            if (specialPositions.Contains(hitPosition))
             {
                 var listIndex = specialPositions.FindIndex(i => i == hitPosition);
                 int currentLine = (int)Mathf.Floor((float)listIndex/2);
 
-                line = lines[currentLine].GetComponent<LineGenerator>();
-                line.ResetLine(centerPositions, specialPositions, hitPosition, allNodes);
+                line = lines[currentLine];
+                line.ResetLine(centerPositions[hitPosition], hitPosition, allNodes);
 
-                lineStatus[line.lineId] = false;
                 generatingLine = true;
             }
             else
             {
-              foreach(GameObject eachLine in lines)
+              foreach(LineGenerator lineGen in lines)
               {
-                LineGenerator lineGen = eachLine.GetComponent<LineGenerator>();
-                if(lineGen.storedLinePoints.Count > 0)
+                if((lineGen.arrayPos.Count != 0) ? (hitPosition == lineGen.arrayPos.Last()) : false)
                 {
-                  if(centerPositions[hitPosition] == lineGen.storedLinePoints[lineGen.storedLinePoints.Count -1])
-                  {
-                    line = lineGen;
-                    generatingLine = true;
-                    break;
-                  }
+                  line = lineGen;
+                  generatingLine = true;
+                  break;
                 }
               }
             }
@@ -176,17 +169,16 @@ public class GridGenerator : MonoBehaviour
 
         else if (touch.phase.ToString() == "Moved" && generatingLine)
         {
-            if(!specialPositions.Contains(hitPosition) || hitPosition == specialPositions[line.lineId*2] || hitPosition == specialPositions[line.lineId*2 +1])
+            if(!specialPositions.Contains(hitPosition) || hitPosition == line.lineExtremities[0] || hitPosition == line.lineExtremities[1])
               line.AddLinePoint(centerPositions[hitPosition], hitPosition, true);
 
             else
               generatingLine = false;
 
-            if(!lineStatus[line.lineId])
-              lineStatus[line.lineId] = line.CheckLineStatus(centerPositions[hitPosition],
-                centerPositions[specialPositions[line.lineId*2]], centerPositions[specialPositions[line.lineId*2+1]], allNodes);
+            if(!line.lineStatus)
+              line.CheckLineStatus(centerPositions[hitPosition], allNodes);
 
-            if(lineStatus[line.lineId])
+            if(line.lineStatus)
               generatingLine = false;
 
             CheckVictory();
@@ -198,12 +190,13 @@ public class GridGenerator : MonoBehaviour
     }
 
 
+    //Checks if all Lines have status == true
     void CheckVictory()
     {
       completedLines = 0;
-      foreach(bool status in lineStatus)
+      foreach(LineGenerator lineGen in lines)
       {
-        if(status)
+        if(lineGen.lineStatus)
           completedLines++;
       }
 

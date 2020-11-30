@@ -31,6 +31,8 @@ public class LevelLineManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+      finished = GameObject.Find("Finished");
+      finished.SetActive(false);
       foreach (LineGenerator lineGen in lines)
       {
         specialPositions.Add(lineGen.lineExtremities[0]);
@@ -70,7 +72,7 @@ public class LevelLineManager : MonoBehaviour
             }
         }
 
-
+        //If person is moving its pressed finger, check if it went to a new unused position;
         else if (touch.phase.ToString() == "Moved" && generatingLine)
         {
             bool readyToAdd = true;
@@ -120,7 +122,7 @@ public class LevelLineManager : MonoBehaviour
       {
           generatingLine = false;
           victory = true;
-          PlayerPrefs.SetInt("Level " + GridGenerator.currentLevel, 1);
+          PlayerPrefs.SetInt("Level_2 " + GridGenerator.currentLevel, 1);
           finished.SetActive(true);
       }
     }
@@ -157,7 +159,7 @@ public class LevelLineManager : MonoBehaviour
         if(nextLevel)
           GridGenerator.currentLevel ++;
 
-        if(GridGenerator.currentLevel == 17)
+        if(GridGenerator.currentLevel == 5)
           SceneManager.LoadScene("MainMenu");
         else
 

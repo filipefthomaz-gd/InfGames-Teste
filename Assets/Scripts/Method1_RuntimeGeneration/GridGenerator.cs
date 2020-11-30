@@ -27,7 +27,6 @@ public class GridGenerator : MonoBehaviour
 
     private float distanceFactor;
     private List<int> specialPositions;
-    private Vector2[] centerPositions;
     private GameObject[] allNodes;
     private int completedLines;
 
@@ -44,7 +43,6 @@ public class GridGenerator : MonoBehaviour
     void GenerateGrid()
     {
         specialPositions = new List<int>();
-        centerPositions = new Vector2[gridSize * gridSize];
         allNodes = new GameObject[gridSize * gridSize];
 
         //DistanceFactor makes the distance between points smaller for larger grids;
@@ -102,7 +100,6 @@ public class GridGenerator : MonoBehaviour
                 gridSquare.name = (currentPos).ToString();
 
                 //Relation between array position with world (x,y) position stored in centerPositions
-                centerPositions[currentPos] = new Vector2(xWorldPos, yWorldPos);
                 allNodes[currentPos] = node;
             }
         }
@@ -166,7 +163,7 @@ public class GridGenerator : MonoBehaviour
             }
         }
 
-
+        //If person is moving its pressed finger, check if it went to a new unused position;
         else if (touch.phase.ToString() == "Moved" && generatingLine)
         {
             if(!specialPositions.Contains(hitPosition) || hitPosition == line.lineExtremities[0] || hitPosition == line.lineExtremities[1])
@@ -175,12 +172,14 @@ public class GridGenerator : MonoBehaviour
             else
               generatingLine = false;
 
+            //After new added point, check if line is complete.
             if(!line.lineStatus)
               line.CheckLineStatus(housePosition, allNodes);
 
             if(line.lineStatus)
               generatingLine = false;
 
+            //Check how many lines are complete and if all complete, declare victory
             CheckVictory();
 
         }

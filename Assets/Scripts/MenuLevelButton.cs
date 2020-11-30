@@ -34,10 +34,16 @@ public class MenuLevelButton : MonoBehaviour
       button.onClick.AddListener(LoadLevel);
 
       blocked = Instantiate(blockedImage, transform);
-      if(PlayerPrefs.HasKey("Level "+(level-1).ToString()))
-      {
-        status = PlayerPrefs.GetInt("Level "+(level-1).ToString());
-      }
+      string playerPrefsKey = "";
+
+      if(scene == "LevelScene")
+        playerPrefsKey = "Level "+(level-1).ToString();
+
+      else
+        playerPrefsKey = "Level_2 "+(level-1).ToString();
+
+      if(PlayerPrefs.HasKey(playerPrefsKey))
+        status = PlayerPrefs.GetInt(playerPrefsKey);
 
       if(status == 1 || level == 1)
         LevelUnlocked();
